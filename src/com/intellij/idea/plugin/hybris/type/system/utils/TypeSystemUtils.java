@@ -19,8 +19,15 @@
 package com.intellij.idea.plugin.hybris.type.system.utils;
 
 import com.intellij.idea.plugin.hybris.common.HybrisConstants;
+import com.intellij.idea.plugin.hybris.type.system.model.Attribute;
+import com.intellij.idea.plugin.hybris.type.system.model.EnumType;
+import com.intellij.idea.plugin.hybris.type.system.model.ItemType;
 import com.intellij.psi.PsiFile;
+import com.intellij.psi.xml.XmlAttributeValue;
 import com.intellij.psi.xml.XmlFile;
+import com.intellij.util.xml.GenericAttributeValue;
+import org.apache.commons.lang3.StringUtils;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 /**
@@ -34,4 +41,60 @@ public final class TypeSystemUtils {
         return psiFile instanceof XmlFile && psiFile.getName().endsWith(HybrisConstants.HYBRIS_ITEMS_XML_FILE_ENDING);
     }
 
+    public static boolean isAttributeGenerationDisabled(@NotNull final Attribute attribute) {
+        Boolean isGenerate = TypeSystemUtils.getBoolean(attribute.getGenerate());
+        if (Boolean.FALSE.equals(isGenerate)) {
+            return true;
+        }
+
+        isGenerate = TypeSystemUtils.getBoolean(attribute.getModel().getGenerate());
+
+        return Boolean.FALSE.equals(isGenerate);
+    }
+
+    public static boolean isClassGenerationDisabled(@NotNull final ItemType itemType) {
+        Boolean isGenerate = TypeSystemUtils.getBoolean(itemType.getGenerate());
+        if (Boolean.FALSE.equals(isGenerate)) {
+            return true;
+        }
+
+        isGenerate = TypeSystemUtils.getBoolean(itemType.getModel().getGenerate());
+        return Boolean.FALSE.equals(isGenerate);
+    }
+
+    public static boolean isEnumGenerationDisabled(@NotNull final EnumType enumType) {
+        final Boolean isGenerate = TypeSystemUtils.getBoolean(enumType.getGenerate());
+
+        return Boolean.FALSE.equals(isGenerate);
+    }
+
+    @Nullable
+    public static String getString(@Nullable GenericAttributeValue genericAttributeValue) {
+        if (null == genericAttributeValue) {
+            return null;
+        } else {
+            final XmlAttributeValue xmlAttributeValue = genericAttributeValue.getXmlAttributeValue();
+            if (null == xmlAttributeValue) {
+                return null;
+            } else {
+                final String value = xmlAttributeValue.getValue();
+                return StringUtils.isBlank(value) ? null : value;
+            }
+        }
+    }
+
+    @Nullable
+    public static Boolean getBoolean(@Nullable GenericAttributeValue genericAttributeValue) {
+        if (null == genericAttributeValue) {
+            return null;
+        } else {
+            final XmlAttributeValue xmlAttributeValue = genericAttributeValue.getXmlAttributeValue();
+            if (null == xmlAttributeValue) {
+                return null;
+            } else {
+                final String value = xmlAttributeValue.getValue();
+                return StringUtils.isBlank(value) ? null : Boolean.valueOf(value);
+            }
+        }
+    }
 }

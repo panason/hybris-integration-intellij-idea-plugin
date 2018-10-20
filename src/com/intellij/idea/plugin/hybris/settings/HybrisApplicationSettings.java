@@ -134,6 +134,10 @@ public class HybrisApplicationSettings {
     @PropertyName("excludeTestSources")
     private boolean excludeTestSources = false;
 
+    @PropertyName("warnIfGeneratedItemsAreOutOfDate")
+    private boolean warnIfGeneratedItemsAreOutOfDate = true;
+
+
     public HybrisApplicationSettings() {
     }
 
@@ -231,6 +235,14 @@ public class HybrisApplicationSettings {
 
     public void setGroupPlatform(final String groupPlatform) {
         this.groupPlatform = groupPlatform;
+    }
+
+    public boolean isWarnIfGeneratedItemsAreOutOfDate() {
+        return warnIfGeneratedItemsAreOutOfDate;
+    }
+
+    public void setWarnIfGeneratedItemsAreOutOfDate(final boolean warnIfGeneratedItemsAreOutOfDate) {
+        this.warnIfGeneratedItemsAreOutOfDate = warnIfGeneratedItemsAreOutOfDate;
     }
 
     public HashSet<StatsCollector.ACTIONS> getUsedActions() {
@@ -356,6 +368,7 @@ public class HybrisApplicationSettings {
             .append(developmentMode)
             .append(excludeTestSources)
             .append(extensionsResourcesToExcludeList)
+            .append(warnIfGeneratedItemsAreOutOfDate)
             .toHashCode();
     }
 
@@ -396,6 +409,7 @@ public class HybrisApplicationSettings {
             .append(developmentMode, other.developmentMode)
             .append(excludeTestSources, other.excludeTestSources)
             .append(extensionsResourcesToExcludeList, other.extensionsResourcesToExcludeList)
+            .append(warnIfGeneratedItemsAreOutOfDate, other.warnIfGeneratedItemsAreOutOfDate)
             .isEquals();
     }
 
@@ -426,6 +440,7 @@ public class HybrisApplicationSettings {
         sb.append(", sourceZipUsed='").append(sourceZipUsed).append('\'');
         sb.append(", developmentMode='").append(developmentMode).append('\'');
         sb.append(", excludeTestSources='").append(excludeTestSources).append('\'');
+        sb.append(", warnIfGeneratedItemsAreOutOfDate='").append(warnIfGeneratedItemsAreOutOfDate).append('\'');
         sb.append('}');
         return sb.toString();
     }

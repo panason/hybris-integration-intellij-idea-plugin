@@ -224,6 +224,11 @@
                 com.intellij.idea.plugin.hybris.project.components.HybrisProjectApplicationComponent
             </implementation-class>
         </component>
+        <component>
+            <implementation-class>
+                com.intellij.idea.plugin.hybris.type.system.validation.TypeSystemValidationComponent
+            </implementation-class>
+        </component>
     </application-components>
 
     <actions>

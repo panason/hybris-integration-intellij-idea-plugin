@@ -208,6 +208,11 @@ public interface HybrisConstants {
     String HYBRIS_DATA_DIR_ENV = "HYBRIS_DATA_DIR";
     String IMPORT_OVERRIDE_FILENAME = "hybris4intellij.properties";
     String GROUP_OVERRIDE_KEY = "group.override";
+
+    String ITEM_ROOT_CLASS = "de.hybris.platform.core.model.ItemModel";
+    String ENUM_ROOT_CLASS = "de.hybris.platform.core.HybrisEnumValue";
+    String MODEL_SUFFIX = "Model";
+
     String LOCAL_GROUP_OVERRIDE_COMMENTS = "In this file you can override default module grouping and add additional ant parameters.\n" +
                                            "Add a property group.override and value group name.\n" +
                                            "If you use subgroups use / as a separator. For example group.override=mygroup/mysubgroup";
@@ -218,7 +223,6 @@ public interface HybrisConstants {
                                             "\n" +
                                             "Use ANT_OPTS to override ant properties. Current default value is\n" +
                                             "ANT_OPTS=-Xmx512m -Dfile.encoding=UTF-8";
-
     String SOURCE_ATTRIBUTE_NAME = "source";
     String TARGET_ATTRIBUTE_NAME = "target";
     String CODE_ATTRIBUTE_NAME = "code";
@@ -278,4 +282,6 @@ public interface HybrisConstants {
         String CATALOG_VERSION_ONLINE = "Online";
         String CATALOG_VERSION_STAGED = "Staged";
     }
+
+    String TS_ITEMS_VALIDATION_WARN = "hybris.ts.items.validation.warn";
 }
